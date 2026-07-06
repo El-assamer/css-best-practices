@@ -1,0 +1,108 @@
+/* ============================================================
+   Theodo brand theme for Slidev
+   Navy #1D2838 · Coral #FF512C · Light #E9EBEF · Poppins
+   ============================================================ */
+:root {
+  --th-navy: #1d2838;
+  --th-navy-soft: #28344a;
+  --th-coral: #ff512c;
+  --th-coral-soft: #ff7a5c;
+  --th-light: #e9ebef;
+  --th-gray: #8f99aa;
+  --th-good: #2ecc71;
+  --th-bad: #ff512c;
+
+  --slidev-theme-primary: var(--th-coral);
+}
+
+.slidev-layout {
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  color: var(--th-navy);
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: var(--th-navy);
+  letter-spacing: -0.01em;
+}
+
+/* Content-slide titles: compact so demos + takeaway fit on one screen */
+.slidev-layout h1 { font-size: 2rem; line-height: 1.1; margin-bottom: 0.2rem; }
+
+.slidev-layout h1 { color: var(--th-navy); }
+.slidev-layout a { color: var(--th-coral); }
+
+/* Coral accent rule under section titles */
+.th-rule {
+  width: 64px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--th-coral);
+  margin: 0.4rem 0 1.2rem;
+}
+
+/* Bad / Good comparison primitives ------------------------- */
+.cmp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+  align-items: stretch;
+}
+.cmp-card {
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  border: 1px solid #dfe3ea;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.cmp-card--bad   { border-color: #ffd2c7; background: #fff6f3; }
+.cmp-card--good  { border-color: #c6efd6; background: #f3fcf7; }
+.cmp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  width: fit-content;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+}
+.cmp-tag--bad  { color: #c8341a; background: #ffe1d8; }
+.cmp-tag--good { color: #15803d; background: #d6f5e3; }
+
+/* "Why it matters" callout */
+.th-note {
+  margin-top: 0.6rem;
+  border-left: 4px solid var(--th-coral);
+  background: #fff4f0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.9rem;
+}
+.th-note b { color: var(--th-coral); }
+
+/* Small demo helpers reused across components */
+.demo-stage {
+  background: #f4f6f9;
+  border: 1px dashed #cfd6e0;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Code blocks a touch smaller so demos fit */
+.slidev-layout .shiki,
+.slidev-layout pre {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+}
