@@ -106,3 +106,8 @@
   font-size: 0.78rem !important;
   line-height: 1.35 !important;
 }
+
+/* Hide the slide picker autocomplete list */
+.autocomplete-list {
+  display: none !important;
+}
