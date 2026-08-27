@@ -16,12 +16,16 @@ const open = ref(false);
           keyboard support, screen-reader needs manual ARIA.
         </div>
       </div>
-      <code class="mini"
-        >&lt;div onclick&gt; + useState + aria-expanded + role…</code
-      >
+      <pre class="mini" v-pre>const open = ref(false)
+
+&lt;div class="acc__head" @click="open = !open"&gt;
+  What is CSS-first? &lt;span&gt;{{ open ? '−' : '+' }}&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="acc__body" v-show="open"&gt;…&lt;/div&gt;
+&lt;!-- still missing: aria-expanded, role, keyboard… --&gt;</pre>
     </div>
 
-    <div class="cmp-card cmp-card--good">
+    <div v-click class="cmp-card cmp-card--good">
       <span class="cmp-tag cmp-tag--good">✓ Native &lt;details&gt;</span>
       <details class="acc-native">
         <summary>What is CSS-first?</summary>
@@ -30,10 +34,10 @@ const open = ref(false);
           the DOM → crawlable &amp; <b>SEO-friendly</b>.
         </div>
       </details>
-      <code class="mini"
-        >&lt;details&gt;&lt;summary&gt;…&lt;/summary&gt; …
-        &lt;/details&gt;</code
-      >
+      <pre class="mini">&lt;details&gt;
+  &lt;summary&gt;What is CSS-first?&lt;/summary&gt;
+  &lt;div&gt;Open/close, keyboard &amp; ARIA built in.&lt;/div&gt;
+&lt;/details&gt;</pre>
     </div>
   </div>
 </template>
@@ -48,7 +52,8 @@ const open = ref(false);
 }
 .acc__head,
 .acc-native summary {
-  padding: 0.7rem 0.9rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -68,23 +73,27 @@ const open = ref(false);
 }
 .acc__body,
 .acc-native__body {
-  padding: 0.7rem 0.9rem;
+  padding: 0.5rem 0.8rem;
   border-top: 1px solid #eef1f5;
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   color: #475569;
 }
 .acc__body code,
 .acc-native__body {
 }
 .mini {
-  margin-top: 0.6rem;
-  font-size: 0.72rem;
+  margin: 0.6rem 0 0;
+  font-size: 0.62rem;
+  line-height: 1.45;
   background: #fff;
   border: 1px solid #e3e7ee;
   border-radius: 6px;
-  padding: 0.35rem 0.5rem;
+  padding: 0.4rem 0.55rem;
   display: block;
   color: #475569;
+  white-space: pre;
+  overflow: auto;
+  max-height: 180px;
 }
 code {
   background: #eef1f5;

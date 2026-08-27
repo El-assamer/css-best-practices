@@ -26,7 +26,7 @@ layout: section
 # Why <em>CSS-first?</em>
 
 The browser already knows how to animate, lay out and handle interactions natively.
-**CSS-first means using those built-in powers before writing JavaScript** — for lighter, faster, more accessible pages.
+**CSS-first means using those built-in powers before writing JavaScript** for lighter, faster and more accessible pages.
 
 ---
 layout: default
@@ -42,7 +42,7 @@ layout: default
 
 ### ⚡ Performance
 
-- CSS animations use the **GPU**, so they stay smooth — even while JavaScript is busy
+- CSS animations use the **GPU**, so they stay smooth, even while JavaScript is busy
 - Less JavaScript means **less to download and run**
 - The page feels faster and never freezes
 
@@ -64,7 +64,7 @@ layout: default
 ### 🧹 Maintainability
 
 - Fewer dependencies to update & secure
-- Declarative — the browser does the work
+- Declarative, the browser does the work
 - Less code to test and debug
 
 </div>
@@ -102,8 +102,8 @@ layout: section
 
 <AnimateDemo class="mt-2" />
 
-<div class="th-note">
-<b>Best practice:</b> animate <code>transform</code> &amp; <code>opacity</code> in CSS — they run on the GPU/compositor.
+<div v-click class="th-note">
+<b>Best practice:</b> animate <code>transform</code> &amp; <code>opacity</code> in CSS  they run on the GPU/compositor.
 Reach for a JS library only for physics, gestures or timeline-orchestrated sequences.
 </div>
 
@@ -115,9 +115,9 @@ Reach for a JS library only for physics, gestures or timeline-orchestrated seque
 
 <ScrollSnapDemo class="mt-2" />
 
-<div class="th-note">
+<div v-click class="th-note">
 <b>Best practice:</b> for sliders &amp; carousels, use <code>scroll-snap-type</code> on the scroller and
-<code>scroll-snap-align</code> on each item. The browser snaps to each slide — no carousel library needed.
+<code>scroll-snap-align</code> on each item. The browser snaps to each slide  no carousel library needed.
 </div>
 
 ---
@@ -128,7 +128,7 @@ Reach for a JS library only for physics, gestures or timeline-orchestrated seque
 
 <HoverDemo class="mt-2" />
 
-<div class="th-note">
+<div v-click class="th-note">
 <b>Best practice:</b> express interactive states with CSS pseudo-classes, not JS events.
 Always pair <code>:hover</code> with <code>:focus-visible</code> so keyboard users get the same affordance.
 </div>
@@ -141,7 +141,7 @@ Always pair <code>:hover</code> with <code>:focus-visible</code> so keyboard use
 
 <DetailsDemo class="mt-2" />
 
-<div class="th-note">
+<div v-click class="th-note">
 <b>Best practice:</b> use <code>&lt;details&gt;/&lt;summary&gt;</code> for disclosure UI. Open/close, keyboard and ARIA are built in,
 and the content stays in the DOM — <b>visible to search engines</b>.
 </div>
@@ -154,9 +154,9 @@ and the content stays in the DOM — <b>visible to search engines</b>.
 
 <LayoutDemo class="mt-2" />
 
-<div class="th-note">
+<div v-click class="th-note">
 <b>Best practice:</b> use <b>Flexbox</b> for rows &amp; columns. <code>display:flex</code> gives equal-height
-columns, <code>gap</code> spaces them, and <code>justify/align</code> centre content — no absolute coordinates, no hardcoded heights.
+columns, <code>gap</code> spaces them, and <code>justify/align</code> centre content no absolute coordinates, no hardcoded heights.
 </div>
 
 ---
@@ -167,9 +167,9 @@ columns, <code>gap</code> spaces them, and <code>justify/align</code> centre con
 
 <StickyDemo class="mt-2" />
 
-<div class="th-note">
+<div v-click class="th-note">
 <b>Best practice:</b> pin headers, sidebars and section labels with <code>position: sticky; top: 0</code>.
-No scroll listeners, no layout thrash — the browser handles it on the compositor.
+No scroll listeners, no layout thrash the browser handles it on the compositor.
 </div>
 
 ---
@@ -178,38 +178,61 @@ No scroll listeners, no layout thrash — the browser handles it on the composit
 
 <div class="th-rule" />
 
-<div class="grid grid-cols-2 gap-x-8 gap-y-3 mt-4 text-sm">
+<div class="bonus-grid grid grid-cols-2 gap-x-8 gap-y-1 mt-3 text-sm">
 
 <div>
 
-**🎨 Use variables for your design tokens**
-`--brand: #ff512c` — change a colour once, everywhere updates.
+**🎨 Use variables for your design tokens** — change a colour once, everywhere updates.
 
-**📏 Prefer relative units**
-`rem`, `%`, `clamp()` over fixed `px` → scales & stays accessible.
+```css
+:root { --brand: #ff512c; }
+.btn  { background: var(--brand); }
+```
 
-**🧱 Space with `gap`, not margins**
-In flex/grid, `gap` avoids fragile margin hacks.
+**📏 Prefer relative units** — scales & stays accessible.
+
+```css
+font-size: clamp(1rem, 2.5vw, 1.5rem); /* not 24px */
+```
+
+**🧱 Space with `gap`, not margins** — no fragile margin hacks.
+
+```css
+.list { display: flex; gap: 12px; }
+```
 
 </div>
 
 <div>
 
-**🚫 Avoid `!important`**
-It's a patch that makes the next fix harder. Lower specificity instead.
+**🚫 Avoid `!important`** — lower specificity instead.
 
-**🪜 Keep selectors shallow**
-Deep nesting = brittle, hard-to-override CSS.
+```css
+.title { color: red !important; } /* ✗ */
+.card .title { color: red; }      /* ✓ */
+```
 
-**♿ Respect user settings**
-Wrap motion in `@media (prefers-reduced-motion: reduce)`.
+**🪜 Keep selectors shallow** — deep nesting is brittle.
+
+```css
+.nav ul li a span { }  /* ✗ */
+.nav-link { }          /* ✓ */
+```
+
+**♿ Respect user settings** — wrap motion in a media query.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none; transition: none; }
+}
+```
 
 </div>
 
 </div>
 
-<div class="th-note mt-4">
-<b>Golden rule:</b> write the simplest CSS that works — the browser is smarter than you think.
+<div class="th-note mt-2">
+<b>Golden rule:</b> write the simplest CSS that works, the browser is smarter than you think.
 </div>
 
 ---
@@ -240,5 +263,3 @@ layout: cover
 ---
 
 # Thank you 🧡
-
-<div class="mt-6 text-sm opacity-70">el-mehdi.assamer@theodo.com</div>

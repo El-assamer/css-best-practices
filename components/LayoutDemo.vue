@@ -7,18 +7,23 @@
         <div class="col col--bad">A bit more text in this column</div>
         <div class="col col--bad">Tiny</div>
       </div>
-      <code class="mini">position: absolute; left: 0 / right: 0; width: 32%; margin-left: 34%;</code>
+      <pre class="mini">.row { position: relative; height: 40px; /* hardcoded */ }
+.col { position: absolute; top: 4px; width: 32%; }
+.col:nth-of-type(1) { left: 4px; }
+.col:nth-of-type(2) { left: 0; margin-left: 34%; }
+.col:nth-of-type(3) { right: 4px; }</pre>
       <p class="muted">Out of flow → parent <b>collapses</b>, so you hardcode a height; positions are <b>manual math</b> and content overflows.</p>
     </div>
 
-    <div class="cmp-card cmp-card--good">
+    <div v-click class="cmp-card cmp-card--good">
       <span class="cmp-tag cmp-tag--good">✓ display: flex</span>
       <div class="row-good">
         <div class="col col--good">Short</div>
         <div class="col col--good">A bit more text in this column</div>
         <div class="col col--good">Tiny</div>
       </div>
-      <code class="mini">display: flex; gap: .6rem;  /* .col { flex: 1 } */</code>
+      <pre class="mini">.row { display: flex; gap: .6rem; }
+.col { flex: 1; }</pre>
       <p class="muted"><b>Equal heights</b> automatically, even spacing with <code>gap</code>, no clearfix.</p>
     </div>
   </div>
@@ -51,9 +56,10 @@
   border-radius: 6px; padding: 0.5rem; font-size: 0.8rem; font-weight: 600;
 }
 .mini {
-  font-size: 0.72rem; background: #fff; border: 1px solid #e3e7ee;
-  border-radius: 6px; padding: 0.35rem 0.5rem; display: block; color: #475569;
+  font-size: 0.62rem; line-height: 1.45; background: #fff; border: 1px solid #e3e7ee;
+  border-radius: 6px; padding: 0.4rem 0.55rem; display: block; color: #475569;
+  margin: 0; white-space: pre; overflow: auto; max-height: 180px;
 }
-.muted { font-size: 0.82rem; color: #64748b; margin: 0; }
+.muted { font-size: 0.7rem; color: #64748b; margin: 0; }
 .muted code { background: #eef1f5; padding: 0 0.25rem; border-radius: 4px; }
 </style>
